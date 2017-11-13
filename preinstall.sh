@@ -1,3 +1,10 @@
+brew install zsh zsh-completions
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+chsh -s /usr/local/bin/zsh
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+brew install neovim
+brew install tmux
+
 # For copying
 brew install reattach-to-user-namespace
 
@@ -15,3 +22,9 @@ pip3 install neovim
 
 # ctags
 brew install ctags
+
+
+# symlinks
+ln -s zshrc ~/.zshrc
+ln -s vimrc ~/.vimrc
+ln -s tmux.conf ~/.tmux.conf
