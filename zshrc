@@ -98,4 +98,4 @@ alias vz='nvim ~/.zshrc && source ~/.zshrc'
 alias gr='git reset --hard'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
