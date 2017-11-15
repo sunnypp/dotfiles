@@ -22,9 +22,18 @@ pip3 install neovim
 
 # ctags
 brew install ctags
+curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > /usr/local/bin/phpctags
+chmod 777 /usr/local/bin/phpctags
 
+# backup and remove
+cp ~/.zshrc{,backup}
+rm ~/.zshrc
+cp ~/.vimrc{,backup}
+rm ~/.vimrc
+cp ~/.tmux.conf{,backup}
+rm ~/.tmux.conf
 
 # symlinks
-ln -s zshrc ~/.zshrc
-ln -s vimrc ~/.vimrc
-ln -s tmux.conf ~/.tmux.conf
+ln -s $HOME/dotfiles/zshrc ~/.zshrc
+ln -s $HOME/dotfiles/vimrc ~/.vimrc
+ln -s $HOME/dotfiles/tmux.conf ~/.tmux.conf
