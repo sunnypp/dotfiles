@@ -97,6 +97,7 @@ source ~/.bashrc
 alias vi='nvim'
 alias vz='nvim ~/.zshrc && source ~/.zshrc'
 alias gr='git reset --hard'
+alias :q='exit'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
