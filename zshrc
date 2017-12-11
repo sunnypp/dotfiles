@@ -100,3 +100,9 @@ alias gr='git reset --hard'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+###-tns-completion-start-###
+if [ -f /Users/sunnypun/.tnsrc ]; then 
+    source /Users/sunnypun/.tnsrc 
+fi
+###-tns-completion-end-###

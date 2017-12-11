@@ -25,6 +25,10 @@ brew install ctags
 curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > /usr/local/bin/phpctags
 chmod 777 /usr/local/bin/phpctags
 
+# Typscript
+sudo npm install -g typescript
+npm install --global git+https://github.com/Perlence/tstags.git
+
 # backup and remove
 cp ~/.zshrc{,backup}
 rm ~/.zshrc
