@@ -98,6 +98,14 @@ alias vi='nvim'
 alias vz='nvim ~/.zshrc && source ~/.zshrc'
 alias gr='git reset --hard'
 alias :q='exit'
+alias wa='osascript ~/Git/whatsapp-applescript/whatsapp.scpt '
+link() {
+  ln -sfn $(pwd) /Applications/XAMPP/xamppfiles/htdocs/$1
+}
+hash -d a=~/Git/bom_app
+
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -107,3 +115,9 @@ if [ -f /Users/sunnypun/.tnsrc ]; then
     source /Users/sunnypun/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sunnypun/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sunnypun/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sunnypun/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/sunnypun/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
