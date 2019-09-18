@@ -362,7 +362,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "j"
@@ -469,7 +469,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "k"
@@ -576,7 +576,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "h"
@@ -683,7 +683,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "l"
@@ -758,7 +758,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "v"
@@ -831,7 +831,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "b"
@@ -904,7 +904,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "n"
@@ -988,7 +988,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "s"
@@ -1074,7 +1074,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "f"
@@ -1151,7 +1151,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "d"
+                                            "key_code": "z"
                                         },
                                         {
                                             "key_code": "g"
@@ -1169,7 +1169,7 @@
                                             },
                                             {
                                                 "set_variable": {
-                                                    "name": "mouse_keys_mode_v4_scroll",
+                                                    "name": "mouse_eys_mode_v4_scroll",
                                                     "value": 0
                                                 }
                                             }
