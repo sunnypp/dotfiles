@@ -2,7 +2,7 @@ export TERM="xterm-256color"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=~/.vim/bin:$PATH
+export PATH=~/.vim/bin:$PATH:~/workspace/depot_tools
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -91,18 +91,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.bash_profile
 source ~/.bashrc
 
 alias vi='nvim'
 alias vz='nvim ~/.zshrc && source ~/.zshrc'
-alias gr='git reset --hard'
-alias :q='exit'
-alias wa='osascript ~/Git/whatsapp-applescript/whatsapp.scpt '
+alias q='exit'
+alias wa='osascript ~/workspace/whatsapp-applescript/whatsapp.scpt '
 link() {
   ln -sfn $(pwd) /Applications/XAMPP/xamppfiles/htdocs/$1
 }
-hash -d a=~/Git/bom_app
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
@@ -121,3 +118,21 @@ if [ -f '/Users/sunnypun/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sunnypun/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/sunnypun/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="$HOME/.fastlane/bin:$PATH"
+
+# This speeds up pasting w/ autosuggest
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
