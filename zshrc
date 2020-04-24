@@ -15,7 +15,7 @@ POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,7 +59,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,9 +97,9 @@ alias vi='nvim'
 alias vz='nvim ~/.zshrc && source ~/.zshrc'
 alias q='exit'
 alias wa='osascript ~/workspace/whatsapp-applescript/whatsapp.scpt '
-link() {
-  ln -sfn $(pwd) /Applications/XAMPP/xamppfiles/htdocs/$1
-}
+
+k="$HOME/workspace/KotlinDemo/"
+g="$HOME/workspace/GoodNotes-5/"
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
@@ -136,3 +136,48 @@ pastefinish() {
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
+
+eval "$(lua /Users/sunny/workspace/z.lua/z.lua --init enhanced zsh)"
+alias zz='z -c'      # restrict matches to subdirs of $PWD
+alias zi='z -i'      # cd with interactive selection
+alias zf='z -I'      # use fzf to select in multiple matches
+alias zb='z -b'      # quickly cd to the parent directory
+
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+alias pw='pwd | pbcopy'
+alias gmd='git merge develop'
+alias gmm='git merge master'
+alias gcne='git commit --no-edit'
+
+alias an='open -a /Applications/Android\ Studio.app'
+
+alias refresh_brave='osascript -e "tell application \"Brave Browser\" to tell the active tab of its first window
+    reload
+end tell"'
+
+alias refresh_chrome='osascript -e "tell application \"Chrome\" to tell the active tab of its first window
+    reload
+end tell"'
+
+alias omg='fuck'
+
+function hot {
+  if (( $# < 2 )); then
+    echo 'USAGE: hot <command> <file1> [<file2> ... <fileN>]'
+    echo '<command> will be run once when any of the files listed is changed (i.e. ls -l <file> has its output changed)'
+  else
+    script=$1
+    shift
+    a='';
+    while true; do
+      b=`ls -l $*`
+      [[ $a != $b ]] && a=$b && eval $script;
+      sleep .5;
+    done
+  fi
+}

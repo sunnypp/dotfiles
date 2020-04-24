@@ -5,6 +5,7 @@ spoon.ReloadConfiguration:start()
 
 mouseCircle = nil
 mouseCircleTimer = nil
+lastFrame = nil
 
 function mouseHighlight()
     -- Delete an existing highlight if it exists
@@ -18,13 +19,13 @@ function mouseHighlight()
     mousepoint = hs.mouse.getAbsolutePosition()
     -- Prepare a big red circle around the mouse pointer
     mouseCircle = hs.drawing.circle(hs.geometry.rect(mousepoint.x-200, mousepoint.y-200, 400, 400))
-    mouseCircle:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=1})
+    mouseCircle:setStrokeColor({red=1,blue=0,green=0.5,alpha=1})
     mouseCircle:setFill(false)
     mouseCircle:setStrokeWidth(5)
     mouseCircle:show()
 
     -- Set a timer to delete the circle after 3 seconds
-    mouseCircleTimer = hs.timer.doAfter(3, function() mouseCircle:delete() end)
+    mouseCircleTimer = hs.timer.doAfter(3, function() mouseCircle:delete() mouseCircle = nil end)
 end
 hs.hotkey.bind({"cmd","alt","shift"}, "D", mouseHighlight)
 
@@ -130,7 +131,7 @@ function exitHyperMode()
   if not hyper.triggered then
     hs.eventtap.keyStroke({}, hyperKey)
   else
-    hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', ''), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
+    hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', '') .. "\n" .. os.date("%a, %b %d %H:%M"), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
   end
   hyper:exit()
 end
@@ -139,7 +140,7 @@ function exitHyperMode2()
   if not hyper.triggered then
     hs.eventtap.keyStroke({}, hyperKey2)
   else
-    hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', ''), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
+    hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', '') .. "\n" .. os.date("%a, %b %d %H:%M"), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
   end
   hyper:exit()
 end
@@ -158,7 +159,7 @@ switcher.ui.showSelectedThumbnail = false
 switcher.ui.showSelectedTitle = false
 switcher.ui.selectedThumbnailSize = 284
 switcher.ui.backgroundColor = {0.3, 0.3, 0.3, 0.5}
-switcher.ui.fontName = 'System'
+-- switcher.ui.fontName = 'System'
 switcher.ui.textSize = 14
 
 -- bind to hotkeys; WARNING: at least one modifier key is required!
@@ -181,34 +182,75 @@ hs.hotkey.bind("cmd-shift","F19",function()hs.eventtap.keyStroke("cmd-shift",hyp
 hs.hotkey.bind("ctrl-shift","F19",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey2)end)
 hs.hotkey.bind("alt-shift","F19",function()hs.eventtap.keyStroke("alt-shift",hyperKey2)end)
 
-hyper:bind({},'a',function() hyper.triggered = true hs.application.launchOrFocus('Android Studio') end)
-hyper:bind({},'b',function() hyper.triggered = true hs.alert.show('Bundle?') end)
-hyper:bind({},'c',function() hyper.triggered = true hs.application.launchOrFocus('Google Chrome') end)
+hyper:bind({},'a',function() hyper.triggered = true hs.application.launchOrFocus('Android Studio')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
+hyper:bind({},'b',function() hyper.triggered = true hs.application.launchOrFocus('Google Chrome') end)
+hyper:bind({},'c',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.brave.Browser') end)
 hyper:bind({},'d',function() hyper.triggered = true hs.execute('open ~/Downloads') end)
 -- hyper:bind({},'e',function() hyper.triggered = true hs.application.launchOrFocus('Finder') end)
 hyper:bind({},'e',function() hyper.triggered = true hs.application.get('Finder'):activate() end)
-hyper:bind({},'f',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.mozilla.firefox') end)
-hyper:bind({},'g',function() hyper.triggered = true hs.application.launchOrFocus('GoodNotesMac') end)
+hyper:bind({},'f',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.Preview') end)
+-- hyper:bind({},'f',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.mozilla.firefox') end)
+hyper:bind({},'g',function() hyper.triggered = true hs.application.launchOrFocus('GoodNotes') end)
 hyper:bind({},'h',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.hammerspoon.Hammerspoon') end)
 hyper:bind({},'i',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.jetbrains.intellij.ce') end)
 hyper:bind({},'j',function() hyper.triggered = true hs.application.launchOrFocus('Simulator') end)
 hyper:bind({},'k',function() hyper.triggered = true hs.application.get('qemu-system-x86_64'):activate() end)
-hyper:bind({},'l',function() hyper.triggered = true hs.application.launchOrFocus('iTerm') end)
-hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.torusknot.SourceTreeNotMAS') end)
-hyper:bind({},'n',function() hyper.triggered = true hs.application.launchOrFocus('Notion') end)
+hyper:bind({},'l',function() hyper.triggered = true hs.application.launchOrFocus('iTerm')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
+hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.github.GitHubClient')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
+hyper:bind({},'n',function() hyper.triggered = true hs.application.launchOrFocus('Notion')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
 hyper:bind({},'o',function() hyper.triggered = true
     hs.applescript('do shell script "ls -t -d ~/Downloads/* | head -n1 | xargs echo -n | xargs -0 open"')
 end)
 hyper:bind({},'p',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.systempreferences') end)
 hyper:bind({},'q',function() hyper.triggered = true hs.application.launchOrFocus('Quip') end)
-hyper:bind({},'r',function() hyper.triggered = true hs.alert.show('Run?') end)
-hyper:bind({},'s',function() hyper.triggered = true hs.application.launchOrFocus('Slack') end)
+hyper:bind({},'r',function() hyper.triggered = true
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local displays = hs.screen.allScreens()
+  if (lastFrame == nil) then
+    lastFrame = f
+    win:moveToScreen(displays[3], false, true)
+    local size = displays[3]:frame()
+    size.h = size.h / 4 * 3
+    win:setFrame(size, 0)
+    win:centerOnScreen()
+  else
+    win:setFrame(lastFrame, 0)
+    lastFrame = nil
+  end
+end)
+hyper:bind({},'s',function() hyper.triggered = true hs.application.launchOrFocus('Slack')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
 hyper:bind({},'t',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.SafariTechnologyPreview') end)
 hyper:bind({},'u',function() hyper.triggered = true hs.application.launchOrFocus('YouTube') end)
-hyper:bind({},'v',function() hyper.triggered = true hs.application.launchOrFocus('MacVim') end)
+hyper:bind({},'v',function() hyper.triggered = true hs.application.launchOrFocus('MacVim')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
 hyper:bind({},'w',function() hyper.triggered = true hs.application.launchOrFocus('WhatsApp') end)
-hyper:bind({},'x',function() hyper.triggered = true hs.application.launchOrFocus('Xcode') end)
-hyper:bind({},'y',function() hyper.triggered = true hs.eventtap.keyStroke("cmd-ctrl","v") end)
+hyper:bind({},'x',function() hyper.triggered = true hs.application.launchOrFocus('Xcode')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+end)
+hyper:bind({},'y',function() hyper.triggered = true
+  hs.eventtap.keyStroke("cmd-ctrl","v")
+  hs.eventtap.keyStroke({}, "down")
+  hs.eventtap.keyStroke({}, "right")
+end)
 hyper:bind({},'z',function() hyper.triggered = true hs.caffeinate.systemSleep() end)
 
 -- Input Method Changing
@@ -242,6 +284,12 @@ hyper:bind({},'4',function() hyper.triggered = true
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
   hs.keycodes.currentSourceID('com.apple.keylayout.Colemak')
+end)
+
+hyper:bind({},'5',function() hyper.triggered = true
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+  hs.keycodes.currentSourceID('com.apple.inputmethod.Kotoeri.Japanese')
 end)
 
 hyper:bind({},'up',function()
@@ -324,21 +372,62 @@ hyper:bind({},'tab',function() hyper.triggered = true
   mouseHighlight()
 end)
 
-
-hs.hotkey.bind({"ctrl"}, "3", function()
-  hs.alert.show("triggered")
-  hs.applescript('do shell script "mv -f /Users/sunny/workspace/KotlinDemo/drawdemo/build/classes/kotlin/js/main/drawdemo.js /Users/sunny/workspace/KotlinDemo/webJs/"')
+-- corners
+hyper:bind({},'-',function() hyper.triggered = true
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  hs.mouse.setAbsolutePosition({x=f.x, y=f.y})
+  mouseHighlight()
 end)
 
--- hs.hotkey.bind({"ctrl"}, "4", function()
---   hs.alert.show("triggered")
---   hs.applescript('do shell script "mv -f /Users/sunny/workspace/KotlinDemo/drawdemo/build/bin/wasm32/debugExecutable/drawdemo.wasm /Users/sunny/workspace/KotlinDemo/webWasm/"')
--- end)
-
-hs.hotkey.bind({"ctrl"}, "4", function()
-  hs.alert.show("triggered")
-  hs.applescript('do shell script "cp /Users/sunny/workspace/KotlinDemo/schema/cinterop/*.dylib /Users/sunny/workspace/KotlinDemo/schema/build/classes/kotlin/main/"')
+hyper:bind({},'=',function() hyper.triggered = true
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  hs.mouse.setAbsolutePosition({x=f.x+f.w, y=f.y})
+  mouseHighlight()
 end)
+
+hyper:bind({},'[',function() hyper.triggered = true
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  hs.mouse.setAbsolutePosition({x=f.x, y=f.y+f.h})
+  mouseHighlight()
+end)
+
+hyper:bind({},']',function() hyper.triggered = true
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  hs.mouse.setAbsolutePosition({x=f.x+f.w, y=f.y+f.h})
+  mouseHighlight()
+end)
+
+-- clear Frame (for Hyper+r)
+
+hyper:bind({},'.',function() hyper.triggered = true
+  lastFrame = nil
+end)
+
+hyper:bind({},'\'',function()
+  -- TODO: use the correct zooming in hotkey on a per-app basis
+  hyper.triggered = true
+  -- AppleScript is sooooo much faster than hs...keyStroke
+  hs.osascript.applescript([[
+repeat 13 times
+  tell application "System Events" to keystroke "=" using command down
+end repeat
+  ]])
+end)
+
+hyper:bind({},';',function()
+  hyper.triggered = true
+  hs.osascript.applescript([[
+repeat 13 times
+  tell application "System Events" to keystroke "-" using command down
+end repeat
+  ]])
+end)
+
+
 
 -- hyper:bind({},'w',function() hyper.triggered = true
 --   hs.osascript.javascript([[
@@ -368,56 +457,6 @@ end)
 --     // end of javascript
 --   ]])
 -- end)
-
--- mirrorKey = 'space'
-
--- -- A global variable for the Mirror Mode
--- mirror = hs.hotkey.modal.new({}, 'F15')
-
--- -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
--- function enterMirrorMode()
---   mirror.triggered = false
---   mirror:enter()
--- end
-
--- function exitMirrorMode()
---   mirror:exit()
---   if not mirror.triggered then
---     hs.eventtap.keyStroke({}, mirrorKey)
---   end
--- end
-
--- f16 = hs.hotkey.bind({}, 'F16', enterMirrorMode, exitMirrorMode)
-
--- mirror:bind({}, 'space', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'space') end)
--- mirror:bind({}, 'y', function() mirror.triggered = true hs.eventtap.keyStroke({}, 't') end)
--- mirror:bind({}, 'u', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'r') end)
--- mirror:bind({}, 'i', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'e') end)
--- mirror:bind({}, 'o', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'w') end)
--- mirror:bind({}, 'p', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'q') end)
--- mirror:bind({}, 'h', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'g') end)
-
--- mirror:bind({}, 'j', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'f') end)
--- mirror:bind({}, 'k', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'd') end)
--- mirror:bind({}, 'l', function() mirror.triggered = true hs.eventtap.keyStroke({}, 's') end)
--- mirror:bind({}, ';', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'a') end)
-
--- mirror:bind({}, 'n', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'v') end)
--- mirror:bind({}, 'm', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'c') end)
--- mirror:bind({}, ',', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'x') end)
--- mirror:bind({}, '.', function() mirror.triggered = true hs.eventtap.keyStroke({}, 'z') end)
-
--- hs.hotkey.bind("cmd","F16",function()hs.eventtap.keyStroke({"cmd"},mirrorKey)end)
--- hs.hotkey.bind("shift","F16",function()hs.eventtap.keyStroke("shift",mirrorKey)end)
--- hs.hotkey.bind("ctrl","F16",function()hs.eventtap.keyStroke("ctrl",mirrorKey)end)
--- hs.hotkey.bind("alt","F16",function()hs.eventtap.keyStroke("alt",mirrorKey)end)
--- hs.hotkey.bind("cmd-shift","F16",function()hs.eventtap.keyStroke("cmd-shift",mirrorKey)end)
--- hs.hotkey.bind("ctrl-shift","F16",function()hs.eventtap.keyStroke("ctrl-shift",mirrorKey)end)
--- hs.hotkey.bind("alt-shift","F16",function()hs.eventtap.keyStroke("alt-shift",mirrorKey)end)
--- hs.hotkey.bind("cmd-alt","F16",function()hs.eventtap.keyStroke("cmd-shift",mirrorKey)end)
--- hs.hotkey.bind("ctrl-alt","F16",function()hs.eventtap.keyStroke("ctrl-shift",mirrorKey)end)
--- hs.hotkey.bind("cmd-alt-shift","F16",function()hs.eventtap.keyStroke("cmd-shift",mirrorKey)end)
--- hs.hotkey.bind("ctrl-alt-shift","F16",function()hs.eventtap.keyStroke("ctrl-shift",mirrorKey)end)
 
 -- Show message when reloaded
 hs.alert.show('hammerspoon configuration reloaded')

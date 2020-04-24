@@ -1169,7 +1169,7 @@
                                             },
                                             {
                                                 "set_variable": {
-                                                    "name": "mouse_eys_mode_v4_scroll",
+                                                    "name": "mouse_keys_mode_v4_scroll",
                                                     "value": 0
                                                 }
                                             }
