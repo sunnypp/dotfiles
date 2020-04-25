@@ -21,13 +21,13 @@ brew install python3
 pip3 install neovim
 
 # ctags
-brew install ctags
-curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > /usr/local/bin/phpctags
-chmod 777 /usr/local/bin/phpctags
+# brew install ctags
+# curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > /usr/local/bin/phpctags
+# chmod 777 /usr/local/bin/phpctags
 
 # Typscript
-sudo npm install -g typescript
-npm install --global git+https://github.com/Perlence/tstags.git
+# sudo npm install -g typescript
+# npm install --global git+https://github.com/Perlence/tstags.git
 
 # backup and remove
 cp ~/.zshrc{,backup}
@@ -41,3 +41,5 @@ rm ~/.tmux.conf
 ln -s $HOME/dotfiles/zshrc ~/.zshrc
 ln -s $HOME/dotfiles/vimrc ~/.vimrc
 ln -s $HOME/dotfiles/tmux.conf ~/.tmux.conf
+ln -s $HOME/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
+ln -s $HOME/dotfiles/init.vim ~/.config/nvim/init.vim
