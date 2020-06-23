@@ -129,7 +129,7 @@ end
 
 function exitHyperMode()
   if not hyper.triggered then
-    hs.eventtap.keyStroke({}, hyperKey)
+    -- hs.eventtap.keyStroke({}, hyperKey)
   else
     hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', '') .. "\n" .. os.date("%a, %b %d %H:%M"), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
   end
@@ -138,7 +138,7 @@ end
 
 function exitHyperMode2()
   if not hyper.triggered then
-    hs.eventtap.keyStroke({}, hyperKey2)
+    -- hs.eventtap.keyStroke({}, hyperKey2)
   else
     hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', '') .. "\n" .. os.date("%a, %b %d %H:%M"), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
   end
