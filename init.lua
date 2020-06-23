@@ -202,7 +202,7 @@ hyper:bind({},'l',function() hyper.triggered = true hs.application.launchOrFocus
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
 end)
-hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.github.GitHubClient')
+hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.torusknot.SourceTreeNotMAS')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
 end)
