@@ -316,8 +316,8 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 " Any valid git URL is allowed
 Plug 'FooSoft/vim-argwrap'
 Plug 'MarSoft/nerdtree-grep-plugin', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
-Plug 'SirVer/ultisnips'
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+" Plug 'SirVer/ultisnips'
+" Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -327,7 +327,7 @@ Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-titlecase'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'
-Plug 'elmcast/elm-vim'
+" Plug 'elmcast/elm-vim'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'haya14busa/incsearch-easymotion.vim'
@@ -340,16 +340,18 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-github-dashboard'
 Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'micha/vim-colors-solarized'
-Plug 'nicwest/QQ.vim'
+" Plug 'nicwest/QQ.vim' " for db connection
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 Plug 'sheerun/vim-polyglot'
@@ -365,15 +367,18 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-php/tagbar-phpctags.vim'
-Plug 'vim-scripts/dbext.vim'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-php/tagbar-phpctags.vim'
+" Plug 'vim-scripts/dbext.vim'
+" Plug 'vim-syntastic/syntastic'
 Plug 'vimtaku/vim-textobj-keyvalue'
 Plug 'wellle/targets.vim'
 Plug 'xolox/vim-misc'
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  " coc... finally
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
@@ -422,8 +427,8 @@ function! s:align()
 endfunction
 
 " brew install python3 https://github.com/Shougo/deoplete.nvim
-call deoplete#enable()
-let g:deoplete#enable_at_startup = 1
+" call deoplete#enable()
+" let g:deoplete#enable_at_startup = 1
 
 " Put plugins and dictionaries in this dir (also on Windows)
 let vimDir = '$HOME/.vim'
@@ -525,3 +530,4 @@ if has('persistent_undo')
 endif
 
 colorscheme solarized
+
