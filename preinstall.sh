@@ -20,6 +20,18 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 brew install python3
 pip3 install neovim
 
+# command auto-correction
+brew install thefuck
+
+# for lua (using z.lua)
+brew install lua
+
+# for git-lfs
+brew install git-lfs
+
+# next gen ls
+brew install lsd
+
 # ctags
 # brew install ctags
 # curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > /usr/local/bin/phpctags
