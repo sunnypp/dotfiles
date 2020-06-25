@@ -165,14 +165,14 @@ switcher.ui.textSize = 14
 -- bind to hotkeys; WARNING: at least one modifier key is required!
 hs.window.animationDuration = 0
 -- hs.hotkey.bind("cmd","F18",function()switcher:next()end)
-hs.hotkey.bind("cmd","F18",function()hs.eventtap.keyStroke({"cmd"},hyperKey)end)
-hs.hotkey.bind("shift","F18",function()hs.eventtap.keyStroke("shift",hyperKey)end)
-hs.hotkey.bind("ctrl","F18",function()hs.eventtap.keyStroke("ctrl",hyperKey)end)
-hs.hotkey.bind("alt","F18",function()hs.eventtap.keyStroke("alt",hyperKey)end)
+-- hs.hotkey.bind("cmd","F18",function()hs.eventtap.keyStroke({"cmd"},hyperKey)end)
+-- hs.hotkey.bind("shift","F18",function()hs.eventtap.keyStroke("shift",hyperKey)end)
+-- hs.hotkey.bind("ctrl","F18",function()hs.eventtap.keyStroke("ctrl",hyperKey)end)
+-- hs.hotkey.bind("alt","F18",function()hs.eventtap.keyStroke("alt",hyperKey)end)
 -- hs.hotkey.bind("cmd-shift","F18",function()switcher:previous()end)
-hs.hotkey.bind("cmd-shift","F18",function()hs.eventtap.keyStroke("cmd-shift",hyperKey)end)
-hs.hotkey.bind("ctrl-shift","F18",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey)end)
-hs.hotkey.bind("alt-shift","F18",function()hs.eventtap.keyStroke("alt-shift",hyperKey)end)
+-- hs.hotkey.bind("cmd-shift","F18",function()hs.eventtap.keyStroke("cmd-shift",hyperKey)end)
+-- hs.hotkey.bind("ctrl-shift","F18",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey)end)
+-- hs.hotkey.bind("alt-shift","F18",function()hs.eventtap.keyStroke("alt-shift",hyperKey)end)
 
 hs.hotkey.bind("cmd","F19",function()hs.eventtap.keyStroke({"cmd"},hyperKey2)end)
 hs.hotkey.bind("shift","F19",function()hs.eventtap.keyStroke("shift",hyperKey2)end)
