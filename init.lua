@@ -147,7 +147,7 @@ end
 
 -- Bind the Hyper key
 f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
-f19 = hs.hotkey.bind({}, 'F19', enterHyperMode, exitHyperMode2)
+-- f19 = hs.hotkey.bind({}, 'F19', enterHyperMode, exitHyperMode2)
 
 -- set up your windowfilter
 switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
