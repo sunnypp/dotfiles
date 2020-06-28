@@ -119,7 +119,7 @@ hs.hotkey.bind({"ctrl","cmd"}, "left", function() local win = hs.window.focusedW
 hs.hotkey.bind({"ctrl","cmd"}, "right", function() local win = hs.window.focusedWindow() local f = win:frame() f.w = f.w + 100 win:setFrame(f, 0) end)
 
 -- A global variable for the Hyper Mode
-hyper = hs.hotkey.modal.new({}, 'F17')
+hyper = hs.hotkey.modal.new({})
 
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
 function enterHyperMode()
@@ -147,7 +147,7 @@ end
 
 -- Bind the Hyper key
 f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
--- f19 = hs.hotkey.bind({}, 'F19', enterHyperMode, exitHyperMode2)
+f19 = hs.hotkey.bind({}, 'F19', enterHyperMode, exitHyperMode2)
 
 -- set up your windowfilter
 switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
@@ -174,13 +174,13 @@ hs.window.animationDuration = 0
 -- hs.hotkey.bind("ctrl-shift","F18",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey)end)
 -- hs.hotkey.bind("alt-shift","F18",function()hs.eventtap.keyStroke("alt-shift",hyperKey)end)
 
-hs.hotkey.bind("cmd","F19",function()hs.eventtap.keyStroke({"cmd"},hyperKey2)end)
-hs.hotkey.bind("shift","F19",function()hs.eventtap.keyStroke("shift",hyperKey2)end)
-hs.hotkey.bind("ctrl","F19",function()hs.eventtap.keyStroke("ctrl",hyperKey2)end)
-hs.hotkey.bind("alt","F19",function()hs.eventtap.keyStroke("alt",hyperKey2)end)
-hs.hotkey.bind("cmd-shift","F19",function()hs.eventtap.keyStroke("cmd-shift",hyperKey2)end)
-hs.hotkey.bind("ctrl-shift","F19",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey2)end)
-hs.hotkey.bind("alt-shift","F19",function()hs.eventtap.keyStroke("alt-shift",hyperKey2)end)
+-- hs.hotkey.bind("cmd","F19",function()hs.eventtap.keyStroke({"cmd"},hyperKey2)end)
+-- hs.hotkey.bind("shift","F19",function()hs.eventtap.keyStroke("shift",hyperKey2)end)
+-- hs.hotkey.bind("ctrl","F19",function()hs.eventtap.keyStroke("ctrl",hyperKey2)end)
+-- hs.hotkey.bind("alt","F19",function()hs.eventtap.keyStroke("alt",hyperKey2)end)
+-- hs.hotkey.bind("cmd-shift","F19",function()hs.eventtap.keyStroke("cmd-shift",hyperKey2)end)
+-- hs.hotkey.bind("ctrl-shift","F19",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey2)end)
+-- hs.hotkey.bind("alt-shift","F19",function()hs.eventtap.keyStroke("alt-shift",hyperKey2)end)
 
 hyper:bind({},'a',function() hyper.triggered = true hs.application.launchOrFocus('Android Studio')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
