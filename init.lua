@@ -121,10 +121,19 @@ hs.hotkey.bind({"ctrl","cmd"}, "right", function() local win = hs.window.focused
 -- A global variable for the Hyper Mode
 hyper = hs.hotkey.modal.new({})
 
--- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
+-- Another global variable for the Magic Mode
+magic = hs.hotkey.modal.new({})
+
+-- Enter Hyper Mode when F18 is pressed
 function enterHyperMode()
   hyper.triggered = false
   hyper:enter()
+end
+
+-- Enter Magic Mode when F18 is pressed
+function enterMagicMode()
+  magic.triggered = false
+  magic:enter()
 end
 
 function exitHyperMode()
@@ -136,18 +145,18 @@ function exitHyperMode()
   hyper:exit()
 end
 
-function exitHyperMode2()
-  if not hyper.triggered then
+function exitMagicMode()
+  if not magic.triggered then
     -- hs.eventtap.keyStroke({}, hyperKey2)
   else
     hs.task.new("/Users/sunny/iptmthd", function(code,out,err) hs.alert.show(string.gsub(out, '%s+', '') .. "\n" .. os.date("%a, %b %d %H:%M"), {textSize=96}, hs.screen.mainScreen(), 0.5) end):start()
   end
-  hyper:exit()
+  magic:exit()
 end
 
 -- Bind the Hyper key
 f18 = hs.hotkey.bind({}, 'F18', enterHyperMode, exitHyperMode)
-f19 = hs.hotkey.bind({}, 'F19', enterHyperMode, exitHyperMode2)
+f19 = hs.hotkey.bind({}, 'F19', enterMagicMode, exitMagicMode)
 
 -- set up your windowfilter
 switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
@@ -252,6 +261,29 @@ hyper:bind({},'y',function() hyper.triggered = true
   hs.eventtap.keyStroke({}, "right")
 end)
 hyper:bind({},'z',function() hyper.triggered = true hs.caffeinate.systemSleep() end)
+
+-- from: https://gist.github.com/spinscale/fd82f00da29447990f27f36b3f4b927d
+magic:bind({},'a',function() magic.triggered = true
+  local current = hs.audiodevice.defaultOutputDevice():volume()
+  local new = math.min(100, math.max(0, math.floor(current - 3)))
+  if new > 0 then
+    hs.audiodevice.defaultOutputDevice():setMuted(false)
+  end
+  hs.alert.closeAll(0.0)
+  hs.alert.show("Volume " .. new .. "%", {}, 0.5)
+  hs.audiodevice.defaultOutputDevice():setVolume(new)
+end)
+
+magic:bind({},'q',function() magic.triggered = true
+  local current = hs.audiodevice.defaultOutputDevice():volume()
+  local new = math.min(100, math.max(0, math.floor(current + 3)))
+  if new > 0 then
+    hs.audiodevice.defaultOutputDevice():setMuted(false)
+  end
+  hs.alert.closeAll(0.0)
+  hs.alert.show("Volume " .. new .. "%", {}, 0.5)
+  hs.audiodevice.defaultOutputDevice():setVolume(new)
+end)
 
 -- Input Method Changing
 -- OS X BUG: https://www.bountysource.com/issues/6480182-is-it-possible-to-change-the-input-source-automatically-by-application
