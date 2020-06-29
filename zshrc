@@ -181,3 +181,13 @@ function hot {
     done
   fi
 }
+
+function gif {
+  if (( $# < 1 )); then
+    echo 'USAGE: gif <input file>'
+    echo '<input file> will be passed to ffmpeg for converting to GIF'
+  else
+    file=$1
+    ffmpeg -i "$file" -pix_fmt rgb8 -r 10 -filter:v scale=512:-1 output.gif && gifsicle -O3 output.gif -o output.gif
+  fi
+}
