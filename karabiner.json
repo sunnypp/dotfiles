@@ -25,9 +25,9 @@
                                 "type": "basic"
                             },
                             {
-                                "from": { "key_code": "delete_or_backspace" },
+                                "from": { "key_code": "return_or_enter" },
                                 "to": [ { "key_code": "f19", "lazy": true } ],
-                                "to_if_alone": [ { "key_code": "delete_or_backspace" } ],
+                                "to_if_alone": [ { "key_code": "return_or_enter" } ],
                                 "type": "basic"
                             },
                             {
