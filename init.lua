@@ -363,8 +363,7 @@ hyper:bind({},'right',function()
   win:setFrame(f, 0)
 end)
 
-
-hyper:bind({},'tab',function() hyper.triggered = true
+hyper:bind({},'f19',function() hyper.triggered = true
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local center = hs.geometry.rectMidPoint(f)
