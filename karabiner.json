@@ -103,11 +103,6 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    },
                                     "simultaneous": [
                                         {
                                             "key_code": "equal_sign"
