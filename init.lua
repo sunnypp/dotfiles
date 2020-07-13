@@ -272,6 +272,7 @@ magic:bind({},'a',function() magic.triggered = true
   hs.alert.closeAll(0.0)
   hs.alert.show("Volume " .. new .. "%", {}, 0.5)
   hs.audiodevice.defaultOutputDevice():setVolume(new)
+  hs.audiodevice.defaultOutputDevice():setBalance(0.5)
 end)
 
 magic:bind({},'q',function() magic.triggered = true
@@ -283,6 +284,7 @@ magic:bind({},'q',function() magic.triggered = true
   hs.alert.closeAll(0.0)
   hs.alert.show("Volume " .. new .. "%", {}, 0.5)
   hs.audiodevice.defaultOutputDevice():setVolume(new)
+  hs.audiodevice.defaultOutputDevice():setBalance(0.5)
 end)
 
 -- Input Method Changing
