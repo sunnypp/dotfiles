@@ -262,6 +262,87 @@ hyper:bind({},'y',function() hyper.triggered = true
 end)
 hyper:bind({},'z',function() hyper.triggered = true hs.caffeinate.systemSleep() end)
 
+magic:bind({}, '1', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "1", true):post()
+    hs.eventtap.event.newKeyEvent({}, "1", false):post()
+  end)
+end)
+
+magic:bind({}, '2', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "2", true):post()
+    hs.eventtap.event.newKeyEvent({}, "2", false):post()
+  end)
+end)
+
+magic:bind({}, '3', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "3", true):post()
+    hs.eventtap.event.newKeyEvent({}, "3", false):post()
+  end)
+end)
+
+magic:bind({}, '4', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "4", true):post()
+    hs.eventtap.event.newKeyEvent({}, "4", false):post()
+  end)
+end)
+
+magic:bind({}, '5', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "5", true):post()
+    hs.eventtap.event.newKeyEvent({}, "5", false):post()
+  end)
+end)
+
+magic:bind({}, '6', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "6", true):post()
+    hs.eventtap.event.newKeyEvent({}, "6", false):post()
+  end)
+end)
+
+magic:bind({}, '7', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "7", true):post()
+    hs.eventtap.event.newKeyEvent({}, "7", false):post()
+  end)
+end)
+
+magic:bind({}, '8', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "8", true):post()
+    hs.eventtap.event.newKeyEvent({}, "8", false):post()
+  end)
+end)
+
+magic:bind({}, '9', function() magic.triggered = true
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", true):post()
+    hs.eventtap.event.newKeyEvent({"ctrl"}, "a", false):post()
+    hs.eventtap.event.newKeyEvent({}, "9", true):post()
+    hs.eventtap.event.newKeyEvent({}, "9", false):post()
+  end)
+end)
+
 -- from: https://gist.github.com/spinscale/fd82f00da29447990f27f36b3f4b927d
 magic:bind({},'a',function() magic.triggered = true
   local current = hs.audiodevice.defaultOutputDevice():volume()
@@ -285,6 +366,23 @@ magic:bind({},'q',function() magic.triggered = true
   hs.alert.show("Volume " .. new .. "%", {}, 0.5)
   hs.audiodevice.defaultOutputDevice():setVolume(new)
   hs.audiodevice.defaultOutputDevice():setBalance(0.5)
+end)
+
+-- brightness adaptation of the above
+magic:bind({},'g',function() magic.triggered = true
+  local current = hs.brightness.get()
+  local new = math.min(100, math.max(0, math.floor(current - 3)))
+  hs.alert.closeAll(0.0)
+  hs.alert.show("Brightness " .. new .. "%", {}, 0.5)
+  hs.brightness.set(new)
+end)
+
+magic:bind({},'t',function() magic.triggered = true
+  local current = hs.brightness.get()
+  local new = math.min(100, math.max(0, math.floor(current + 3)))
+  hs.alert.closeAll(0.0)
+  hs.alert.show("Brightness " .. new .. "%", {}, 0.5)
+  hs.brightness.set(new)
 end)
 
 -- Input Method Changing
