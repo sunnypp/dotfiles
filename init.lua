@@ -1,7 +1,5 @@
 hyperKey = '`'
 hyperKey2 = '\\'
-hs.loadSpoon("ReloadConfiguration")
-spoon.ReloadConfiguration:start()
 
 mouseCircle = nil
 mouseCircleTimer = nil
@@ -191,30 +189,28 @@ hs.window.animationDuration = 0
 -- hs.hotkey.bind("ctrl-shift","F19",function()hs.eventtap.keyStroke("ctrl-shift",hyperKey2)end)
 -- hs.hotkey.bind("alt-shift","F19",function()hs.eventtap.keyStroke("alt-shift",hyperKey2)end)
 
-hyper:bind({},'a',function() hyper.triggered = true hs.application.launchOrFocus('Android Studio')
-  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
-  hs.keycodes.setLayout('ABC')
-end)
-hyper:bind({},'b',function() hyper.triggered = true hs.application.launchOrFocus('Google Chrome') end)
+hyper:bind({},'a',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.whispersystems.signal-desktop') end)
+hyper:bind({},'b',function() hyper.triggered = true hs.application.launchOrFocus('Opera') end)
 hyper:bind({},'c',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.brave.Browser') end)
 hyper:bind({},'d',function() hyper.triggered = true hs.execute('open ~/Downloads') end)
--- hyper:bind({},'e',function() hyper.triggered = true hs.application.launchOrFocus('Finder') end)
 hyper:bind({},'e',function() hyper.triggered = true hs.application.get('Finder'):activate() end)
 hyper:bind({},'f',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.Preview') end)
 -- hyper:bind({},'f',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.mozilla.firefox') end)
 hyper:bind({},'g',function() hyper.triggered = true hs.application.launchOrFocus('GoodNotes') end)
 hyper:bind({},'h',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('org.hammerspoon.Hammerspoon') end)
-hyper:bind({},'i',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.jetbrains.intellij.ce') end)
-hyper:bind({},'j',function() hyper.triggered = true hs.application.launchOrFocus('Simulator') end)
-hyper:bind({},'k',function() hyper.triggered = true hs.application.get('qemu-system-x86_64'):activate() end)
+hyper:bind({},'i',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.jetbrains.intellij.ce')
+  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
+  hs.keycodes.setLayout('ABC')
+  end)
+hyper:bind({},'j',function() hyper.triggered = true hs.application.launchOrFocus('Jira') end)
+-- hyper:bind({},'j',function() hyper.triggered = true hs.application.launchOrFocus('Simulator') end)
+-- hyper:bind({},'k',function() hyper.triggered = true hs.application.get('qemu-system-x86_64'):activate() end)
+hyper:bind({},'k',function() hyper.triggered = true hs.execute('open ~/cn.app') end)
 hyper:bind({},'l',function() hyper.triggered = true hs.application.launchOrFocus('iTerm')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
 end)
-hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.torusknot.SourceTreeNotMAS')
-  hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
-  hs.keycodes.setLayout('ABC')
-end)
+hyper:bind({},'m',function() hyper.triggered = true hs.application.launchOrFocus('Music') end)
 hyper:bind({},'n',function() hyper.triggered = true hs.application.launchOrFocus('Notion')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
@@ -225,28 +221,29 @@ end)
 hyper:bind({},'p',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.systempreferences') end)
 hyper:bind({},'q',function() hyper.triggered = true hs.application.launchOrFocus('Quip') end)
 hyper:bind({},'r',function() hyper.triggered = true
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local displays = hs.screen.allScreens()
-  if (lastFrame == nil) then
-    lastFrame = f
-    win:moveToScreen(displays[3], false, true)
-    local size = displays[3]:frame()
-    size.h = size.h / 4 * 3
-    win:setFrame(size, 0)
-    win:centerOnScreen()
-  else
-    win:setFrame(lastFrame, 0)
-    lastFrame = nil
-  end
+    hs.application.launchOrFocus('WorkFlowy')
+--  local win = hs.window.focusedWindow()
+--  local f = win:frame()
+--  local displays = hs.screen.allScreens()
+--  if (lastFrame == nil) then
+--    lastFrame = f
+--    win:moveToScreen(displays[3], false, true)
+--    local size = displays[3]:frame()
+--    size.h = size.h / 4 * 3
+--    win:setFrame(size, 0)
+--    win:centerOnScreen()
+--  else
+--    win:setFrame(lastFrame, 0)
+--    lastFrame = nil
+--  end
 end)
 hyper:bind({},'s',function() hyper.triggered = true hs.application.launchOrFocus('Slack')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
 end)
-hyper:bind({},'t',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.SafariTechnologyPreview') end)
-hyper:bind({},'u',function() hyper.triggered = true hs.application.launchOrFocus('YouTube') end)
-hyper:bind({},'v',function() hyper.triggered = true hs.application.launchOrFocus('MacVim')
+hyper:bind({},'t',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.apple.Safari') end)
+hyper:bind({},'u',function() hyper.triggered = true hs.application.launchOrFocus('Notes') end)
+hyper:bind({},'v',function() hyper.triggered = true hs.application.launchOrFocusByBundleID('com.operasoftware.Opera')
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
 end)
@@ -260,7 +257,7 @@ hyper:bind({},'y',function() hyper.triggered = true
   hs.eventtap.keyStroke({}, "down")
   hs.eventtap.keyStroke({}, "right")
 end)
-hyper:bind({},'z',function() hyper.triggered = true hs.caffeinate.systemSleep() end)
+hyper:bind({},'z',function() hyper.triggered = true hs.application.get('com.webex.meetingmanager'):activate() end)
 
 magic:bind({}, '1', function() magic.triggered = true
   hs.timer.doAfter(0.2, function()
@@ -344,7 +341,7 @@ magic:bind({}, '9', function() magic.triggered = true
 end)
 
 -- from: https://gist.github.com/spinscale/fd82f00da29447990f27f36b3f4b927d
-magic:bind({},'a',function() magic.triggered = true
+magic:bind({},'d',function() magic.triggered = true
   local current = hs.audiodevice.defaultOutputDevice():volume()
   local new = math.min(100, math.max(0, math.floor(current - 3)))
   if new > 0 then
@@ -356,7 +353,7 @@ magic:bind({},'a',function() magic.triggered = true
   hs.audiodevice.defaultOutputDevice():setBalance(0.5)
 end)
 
-magic:bind({},'q',function() magic.triggered = true
+magic:bind({},'e',function() magic.triggered = true
   local current = hs.audiodevice.defaultOutputDevice():volume()
   local new = math.min(100, math.max(0, math.floor(current + 3)))
   if new > 0 then
@@ -367,6 +364,8 @@ magic:bind({},'q',function() magic.triggered = true
   hs.audiodevice.defaultOutputDevice():setVolume(new)
   hs.audiodevice.defaultOutputDevice():setBalance(0.5)
 end)
+
+-- magic shortcuts
 
 -- brightness adaptation of the above
 magic:bind({},'g',function() magic.triggered = true
@@ -422,6 +421,40 @@ hyper:bind({},'5',function() hyper.triggered = true
   hs.keycodes.currentSourceID('com.apple.keylayout.ABC')
   hs.keycodes.setLayout('ABC')
   hs.keycodes.currentSourceID('com.apple.inputmethod.Kotoeri.Japanese')
+end)
+
+-- notification handling
+hyper:bind({},'F1',function()
+  hyper.triggered = true
+  hs.osascript.applescript([[
+tell application "System Events"
+	tell process "NotificationCenter"
+		click button 1 of window (count windows)
+	end tell
+end tell
+  ]])
+end)
+
+hyper:bind({},'F2',function()
+  hyper.triggered = true
+  hs.osascript.applescript([[
+tell application "System Events"
+	tell process "NotificationCenter"
+		click button 2 of window (count windows)
+	end tell
+end tell
+  ]])
+end)
+
+hyper:bind({},'F3',function()
+  hyper.triggered = true
+  hs.osascript.applescript([[
+tell application "System Events"
+	tell process "NotificationCenter"
+		click button 3 of window (count windows)
+	end tell
+end tell
+  ]])
 end)
 
 hyper:bind({},'up',function()
@@ -537,28 +570,6 @@ end)
 hyper:bind({},'.',function() hyper.triggered = true
   lastFrame = nil
 end)
-
-hyper:bind({},'\'',function()
-  -- TODO: use the correct zooming in hotkey on a per-app basis
-  hyper.triggered = true
-  -- AppleScript is sooooo much faster than hs...keyStroke
-  hs.osascript.applescript([[
-repeat 13 times
-  tell application "System Events" to keystroke "=" using command down
-end repeat
-  ]])
-end)
-
-hyper:bind({},';',function()
-  hyper.triggered = true
-  hs.osascript.applescript([[
-repeat 13 times
-  tell application "System Events" to keystroke "-" using command down
-end repeat
-  ]])
-end)
-
-
 
 -- hyper:bind({},'w',function() hyper.triggered = true
 --   hs.osascript.javascript([[

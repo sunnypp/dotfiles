@@ -91,7 +91,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.bashrc
 
 alias vi='nvim'
 alias vz='nvim ~/.zshrc && source ~/.zshrc'
@@ -153,19 +152,25 @@ alias pw='pwd | pbcopy'
 alias gmd='git merge develop'
 alias gmm='git merge master'
 alias gcne='git commit --no-edit'
+alias gpmb='git branch --merged >/tmp/merged-branches && \
+    vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches'
 
 alias an='open -a /Applications/Android\ Studio.app'
+
+alias ww='/Users/sunny/private/webwormhole/cmd/ww/ww '
 
 alias refresh_brave='osascript -e "tell application \"Brave Browser\" to tell the active tab of its first window
     reload
 end tell"'
 
-alias refresh_chrome='osascript -e "tell application \"Chrome\" to tell the active tab of its first window
-    reload
-end tell"'
+function noti {
+  msg=${1:-"DONE"}
+  osascript -e "display notification \"$msg\""
+}
 
 alias omg='fuck'
 
+alias youtube-mp4="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
 function hot {
   if (( $# < 2 )); then
     echo 'USAGE: hot <command> <file1> [<file2> ... <fileN>]'
@@ -191,3 +196,25 @@ function gif {
     ffmpeg -i "$file" -pix_fmt rgb8 -r 10 -filter:v scale=512:-1 output.gif && gifsicle -O3 output.gif -o output.gif
   fi
 }
+
+alias m4a='youtube-dl -f "bestaudio[ext=m4a]" '
+alias ipad='rg --files ~/Library/Developer/CoreSimulator/Devices | rg '
+
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# swiftwasm: https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-53
+export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
+
+# Wasienv
+export WASIENV_DIR="/Users/sunny/.wasienv"
+[ -s "$WASIENV_DIR/wasienv.sh" ] && source "$WASIENV_DIR/wasienv.sh"
+
+# Wasmer
+export WASMER_DIR="/Users/sunny/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules,.mypy_cache,__pycache__,.swift.o,.build}/*" 2> /dev/null'
+export APP_STORE_CONNECT_API_KEY_JSON='ewogICJrZXlfaWQiOiAiVkRWM1lKOUwyWCIsCiAgImlzc3Vlcl9pZCI6ICI2OWE2ZGU3Mi1mMWNjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLAogICJrZXkiOiAiLS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tXG5NSUdUQWdFQU1CTUdCeXFHU000OUFnRUdDQ3FHU000OUF3RUhCSGt3ZHdJQkFRUWdjY1ZQWUk1QUo2aHhRN2dHXG5RRUh6RlNndHNLbXQzdlg0V1FLWjVsYkg5SXFnQ2dZSUtvWkl6ajBEQVFlaFJBTkNBQVRRYUxUV3VCV2Q0bjdCXG5WZ25kOG1sMHB2SUdyWkNEZVBVT1ltQ1hRTklNaXk5NUI2ZVBtYnNiTHlhQmVZbDg5Rk04dzZUdE9wVnZRTy9hXG5tUCt6Mk9rT1xuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLSIsCiAgImR1cmF0aW9uIjogMTIwMCwKICAiaW5faG91c2UiOiBmYWxzZQp9'
